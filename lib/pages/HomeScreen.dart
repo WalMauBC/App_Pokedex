@@ -45,25 +45,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                     color: Colors.greenAccent),
                                 child: Stack(
                                   children: [
-                                    Positioned(
-                                      bottom: -40,
-                                      right: -10,
-                                      child: Image.asset(
-                                        'images/pokebola.png',
-                                        height: 100,
-                                        fit: BoxFit.fitHeight,
-                                      ),
-                                    ),
-                                    Positioned(
-                                      bottom: 5,
-                                      right: 5,
-                                      child: CachedNetworkImage(
-                                        imageUrl:
-                                            'http://www.serebii.net/pokemongo/pokemon/094.png',
-                                        height: 80,
-                                        fit: BoxFit.fitHeight,
-                                      ),
-                                    ),
+                                    _PokeballInterno(),
+                                    _ImagenPokemon(),
+                                    _NombrePokemon(),
+                                    _TipoPokemon()
                                   ],
                                 ),
                               ),
@@ -106,4 +91,67 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+}
+
+Widget _PokeballInterno() {
+  return Positioned(
+    bottom: -40,
+    right: -10,
+    child: Image.asset(
+      'images/pokebola.png',
+      height: 100,
+      fit: BoxFit.fitHeight,
+    ),
+  );
+}
+
+Widget _ImagenPokemon() {
+  return Positioned(
+    bottom: 5,
+    right: 5,
+    child: CachedNetworkImage(
+      imageUrl: 'http://www.serebii.net/pokemongo/pokemon/094.png',
+      height: 80,
+      fit: BoxFit.fitHeight,
+      placeholder: (context, url) => Center(
+        child: CircularProgressIndicator(),
+      ),
+    ),
+  );
+}
+
+Widget _NombrePokemon() {
+  return const Positioned(
+    top: 30,
+    left: 15,
+    child: Text(
+      "Gengar",
+      style: TextStyle(
+          fontWeight: FontWeight.bold, fontSize: 18, color: Colors.white),
+    ),
+  );
+}
+
+Widget _TipoPokemon() {
+  return Positioned(
+    top: 55,
+    left: 15,
+    child: Container(
+      child: Padding(
+        padding: const EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+        child: Text(
+          'Ghost',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+      ),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(
+          Radius.circular(20),
+        ),
+        color: Colors.black.withOpacity(0.5),
+      ),
+    ),
+  );
 }
